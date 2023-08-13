@@ -1,0 +1,19 @@
+{
+  "mappings": [
+    {
+      "id": "139ffa2f-6542-49b5-a5be-cf349561ebf9",
+      "request": {
+        "url": "/askai/api/v1/get-pulse-summaries/1",
+        "method": "POST"
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"success\": true,\n  \"data\": \"some awesome response data\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "139ffa2f-6542-49b5-a5be-cf349561ebf9"
+    }
+  ]
+}
