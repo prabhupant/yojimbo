@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "yojimbo"
+version = "0.1.0"
+description = "Python package to simplify testing by easily stubbing thrid party API calls"
+authors = ["Prabhu Pant <prabhupant.github.io>"]
+license = "MIT"
+readme = "README.md"
+packages = [ { include = "yojimbo"} ]
+include = [
+    "README.md",
+    "pyproject.toml"
+]
+repository = "https://github.com/prabhupant/yojimbo"
+homepage = "https://github.com/prabhupant/yojimbo"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+requests = "^2.31.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
