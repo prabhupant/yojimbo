@@ -6,6 +6,10 @@ from yojimbo.stubber import Stubber
 import threading
 from flask_socketio import SocketIO
 
+import logging
+log = logging.getLogger('werkzeug')
+log.setLevel(logging.ERROR)
+
 app = Flask(__name__)
 socketio = SocketIO(app)
 
