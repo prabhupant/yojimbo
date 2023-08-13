@@ -3,8 +3,11 @@ import subprocess
 from flask import Flask, request
 from yojimbo import config
 from yojimbo.stubber import Stubber
+import threading
+from flask_socketio import SocketIO
 
 app = Flask(__name__)
+socketio = SocketIO(app)
 
 
 @app.route('/', defaults={'path': ''}, methods=['GET', 'POST', 'PUT', 'DELETE', 'PATCH'])
@@ -32,16 +35,18 @@ def extract_stub_url(path: str):
     return path[port_index:]
 
 
-def run_yojimbo():
-    flask_process = subprocess.Popen(["python", "flask_app.py"])
+def start_yojimbo():
+    # app.run(debug=True, port=config.YOJIMNO_PORT)
+    socketio.run(app, allow_unsafe_werkzeug=True, port=config.YOJIMNO_PORT)
 
-    # Perform other test-related activities
-    print("Running tests...")
 
-    # Terminate the Flask app process after tests are done
-    flask_process.terminate()
-    flask_process.wait()
+def run():
+    thread = threading.Thread(target=start_yojimbo)
+    thread.start()
+
+    # # Wait for the thread to finish (optional)
+    # thread.join()
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=config.YOJIMNO_PORT)
+    run()

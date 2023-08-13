@@ -1,8 +1,8 @@
 import requests
 
-from yojimbo.main import app
+from yojimbo.main import run
 
-# app.run(debug=True, port=8712)
+run()
 
 
 class CoolService:
