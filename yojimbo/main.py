@@ -44,9 +44,5 @@ def run():
     thread = threading.Thread(target=start_yojimbo)
     thread.start()
 
-    # # Wait for the thread to finish (optional)
-    # thread.join()
-
-
 if __name__ == '__main__':
     run()
