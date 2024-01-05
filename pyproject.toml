@@ -19,6 +19,7 @@ requests = "^2.31.0"
 flask = "^2.3.2"
 socketio = "^0.2.1"
 flask-socketio = "^5.3.5"
+pytest = "^7.4.4"
 
 
 [build-system]
