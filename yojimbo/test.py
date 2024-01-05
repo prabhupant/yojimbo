@@ -1,18 +1,21 @@
 import requests
 
-from yojimbo.main import run
+from yojimbo.decorators import yojimbo
+from yojimbo.main import socketio
 
-run()
+
+# run()
 
 
 class CoolService:
 
     def __init__(self, base_url: str = "http://localhost:8712"):
-        self.url = base_url + "/askai/api/v1/get-pulse-summaries/1"
-
+        self.url = base_url + "/getCoolData"
 
     def get_data(self):
         response = requests.get(self.url)
+
+        print("in get data ", response)
 
         if response.ok:
             return {"data": "cool data"}
@@ -28,10 +31,12 @@ def some_good_function():
     return data
 
 
+@yojimbo
 def test_of_some_good_function():
     response = some_good_function()
 
     assert response == {"data": "cool data"}
+
     print("asserted successfully")
 
 
