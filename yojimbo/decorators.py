@@ -1,34 +1,13 @@
-import multiprocessing
+import pytest
+from yojimbo.main import run_yojimbo, stop_yojimbo, socketio, app
 
-from yojimbo.main import run_yojimbo, stop_yojimbo
+socketio_app = socketio.test_client(app)
 
-
-# def terminate_process(process):
-#     if process.is_alive():
-#         process.terminate()
-#         process.join()
-
-
-# def yojimbo(func):
-#     """
-#     Decorator function that intercepts and modifies API calls
-#     """
-#     def wrapper(*args, **kwargs):
-#         run_yojimbo()
-#
-#         func(*args, **kwargs)
-#         #
-#         # try:
-#         #
-#         # except Exception as e:
-#         #     print(f"Error while running the test {e}")
-#         # finally:
-#         #     terminate_process(process)
-#
-#         stop_yojimbo()
-#         # return result
-#
-#     return wrapper
+@pytest.fixture
+def test_client():
+    client = socketio.test_client(socketio_app)
+    yield client
+    client.disconnect()
 
 def yojimbo(func):
     """
@@ -38,6 +17,7 @@ def yojimbo(func):
         run_yojimbo()
 
         try:
+            # Pass the test client to the decorated function
             result = func(*args, **kwargs)
             assert result == {"data": "cool data"}  # Example assertion
             print("Asserted successfully")
