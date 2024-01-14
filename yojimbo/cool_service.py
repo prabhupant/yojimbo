@@ -2,6 +2,7 @@ import requests
 
 
 class CoolService:
+
     def __init__(self, base_url: str = "http://localhost:8712"):
         self.url = base_url + "/getCoolData"
 
