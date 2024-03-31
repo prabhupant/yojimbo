@@ -1,15 +1,15 @@
-import pytest
-from yojimbo.main import run_yojimbo, stop_yojimbo, socketio, app
+# import pytest
+from yojimbo.main import start_yojimbo
 
-socketio_app = socketio.test_client(app)
+# socketio_app = socketio.test_client(app)
 
-
-@pytest.fixture
-def test_client():
-    client = socketio.test_client(socketio_app)
-    yield client
-    client.disconnect()
-
+#
+# @pytest.fixture
+# def test_client():
+#     client = socketio.test_client(socketio_app)
+#     yield client
+#     client.disconnect()
+#
 
 def yojimbo(func):
     """
@@ -17,7 +17,7 @@ def yojimbo(func):
     """
 
     def wrapper(*args, **kwargs):
-        run_yojimbo()
+        start_yojimbo()
 
         try:
             # Pass the test client to the decorated function
